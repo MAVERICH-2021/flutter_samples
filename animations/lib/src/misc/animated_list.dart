@@ -1,7 +1,3 @@
-// Copyright 2020 The Flutter team. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
-// found in the LICENSE file.
-
 import 'package:flutter/material.dart';
 
 class AnimatedListDemo extends StatefulWidget {
@@ -13,7 +9,7 @@ class AnimatedListDemo extends StatefulWidget {
 }
 
 class _AnimatedListDemoState extends State<AnimatedListDemo> {
-  final GlobalKey<AnimatedListState> _listKey = GlobalKey();
+  final GlobalKey<AnimatedListState> _listKey = GlobalKey(); //locate state  of list
   final listData = [
     UserModel(0, 'Govind', 'Dixit'),
     UserModel(1, 'Greta', 'Stoll'),
@@ -30,13 +26,14 @@ class _AnimatedListDemoState extends State<AnimatedListDemo> {
         UserModel(++_maxIdValue, 'New', 'Person'),
       );
       _listKey.currentState!
-          .insertItem(index, duration: const Duration(milliseconds: 300));
+          .insertItem(index, duration: const Duration(milliseconds: 300)); // insertItem vs. insert -> trigger animation
     });
   }
 
   void deleteUser(int id) {
     setState(() {
-      final index = listData.indexWhere((u) => u.id == id);
+      final index = listData.indexWhere((u) => u.id == id); 
+      //通过同时修改state和persistant数据，实现不依赖父组件通向数据，实现实时反应最新数据
       var user = listData.removeAt(index);
       _listKey.currentState!.removeItem(
         index,
@@ -52,7 +49,7 @@ class _AnimatedListDemoState extends State<AnimatedListDemo> {
             ),
           );
         },
-        duration: const Duration(milliseconds: 600),
+        duration: const Duration(milliseconds: 300),
       );
     });
   }
@@ -85,9 +82,10 @@ class _AnimatedListDemoState extends State<AnimatedListDemo> {
         ],
       ),
       body: SafeArea(
+        //animated 绑定globalkey - 配合 insertItem deleteItem
         child: AnimatedList(
           key: _listKey,
-          initialItemCount: 5,
+          initialItemCount: listData.length,
           itemBuilder: (context, index, animation) {
             return FadeTransition(
               opacity: animation,

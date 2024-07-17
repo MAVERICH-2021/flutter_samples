@@ -1,6 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+//TODO what;s the point to change platform at runtime? does platform truely changed?
+
 typedef PlatformCallback = void Function(TargetPlatform platform);
 
 class PlatformSelector extends StatefulWidget {
@@ -16,10 +18,9 @@ class PlatformSelector extends StatefulWidget {
 }
 
 class _PlatformSelectorState extends State<PlatformSelector> {
-  static const int targetPlatformStringLength = 15; // 'TargetPlatform.'.length
 
   static String _platformToString(TargetPlatform platform) {
-    return platform.toString().substring(targetPlatformStringLength);
+    return platform.toString().substring(15);
   }
 
   final TargetPlatform originaPlatform = defaultTargetPlatform;

@@ -1,8 +1,6 @@
 
 # Code Sharing
 
-
-
 A full-stack Dart application using Flutter on the client and
 [`shelf`](https://pub.dev/packages/shelf) on the server. The Flutter app
 itself is still the counter app, but the actual number is stored on the server
