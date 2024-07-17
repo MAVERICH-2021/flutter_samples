@@ -1,7 +1,3 @@
-// Copyright 2020, the Flutter project authors. Please see the AUTHORS file
-// for details. All rights reserved. Use of this source code is governed by a
-// BSD-style license that can be found in the LICENSE file.
-
 import 'package:flutter/material.dart';
 
 // Demonstrates how to use autofill hints. The full list of hints is here:
@@ -27,6 +23,7 @@ class _AutofillDemoState extends State<AutofillDemo> {
         child: Scrollbar(
           child: SingleChildScrollView(
             padding: const EdgeInsets.all(16),
+            ///auto fill scope
             child: AutofillGroup(
               child: Column(
                 children: [
@@ -34,7 +31,7 @@ class _AutofillDemoState extends State<AutofillDemo> {
                     const Text('This sample demonstrates autofill. '),
                     TextFormField(
                       autofocus: true,
-                      textInputAction: TextInputAction.next,
+                      textInputAction: TextInputAction.next, 
                       decoration: const InputDecoration(
                         hintText: 'Jane',
                         labelText: 'First Name',
